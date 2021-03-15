@@ -14,6 +14,7 @@ class Dot(Sprite):
     def init_element(self):
         self.vy = STARTING_VELOCITY
 
+
     def update(self):
         self.y += self.vy
         self.vy += GRAVITY
