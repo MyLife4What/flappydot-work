@@ -7,9 +7,7 @@ class GameCanvasElement():
         self.x = x
         self.y = y
         self.canvas = game_app.canvas
-
         self.is_visible = True
-
         self.init_canvas_object()
         self.init_element()
 
