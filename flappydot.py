@@ -85,10 +85,6 @@ class PillarPair(Sprite):
     def random_pillar_height(self):
         self.y = random.randint(125,375)
 
-    def pillar_update(self):
-        if self.x < 0:
-            self.random_pillar_height()
-
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("Monkey Banana Game")
