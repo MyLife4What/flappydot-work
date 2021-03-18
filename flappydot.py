@@ -39,7 +39,9 @@ class FlappyGame(GameApp):
     def on_key_pressed(self, event):
         pass
 
+
 class PillarPair(Sprite):
+
     def init_element(self):
         self.is_started = True
 
@@ -54,6 +56,7 @@ class PillarPair(Sprite):
 
     def stop(self):
         self.is_started = False
+
 
 if __name__ == "__main__":
     root = tk.Tk()
