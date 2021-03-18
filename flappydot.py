@@ -44,6 +44,7 @@ class PillarPair(Sprite):
         self.is_started = True
 
     def update(self):
+
         if self.is_started:
             self.x -= PILLAR_SPEED
             if self.x <= -100:
