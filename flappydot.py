@@ -13,6 +13,7 @@ JUMP_VELOCITY = -20
 
 PILLAR_SPEED = 10
 
+
 class Dot(Sprite):
     def init_element(self):
         self.vy = STARTING_VELOCITY
@@ -31,41 +32,48 @@ class Dot(Sprite):
         self.is_gameover = True
 
     def jump(self):
-        self.vu = JUMP_VELOCITY
+        self.vy = JUMP_VELOCITY
+
+    def is_out_of_screen(self):
+        return self.y >= CANVAS_HEIGHT
 
 
 class FlappyGame(GameApp):
     def create_sprites(self):
         self.dot = Dot(self, 'images/dot.png', CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
-        self.pillar_pair = PillarPair(self, 'images/pillar-pair.png', CANVAS_WIDTH, CANVAS_HEIGHT//2)
+        self.pillar_pair = PillarPair(self, 'images/pillar-pair.png', CANVAS_WIDTH, CANVAS_HEIGHT // 2)
         self.elements.append(self.pillar_pair)
-
         self.elements.append(self.dot)
-        self.is_started = False
-        self.is_gameover = False
 
     def init_game(self):
+        self.is_started = False
+        self.is_gameover = False
         self.create_sprites()
 
     def pre_update(self):
         pass
 
     def post_update(self):
-        pass
+        if self.dot.is_out_of_screen() and not self.is_gameover:
+            self.is_gameover = True
+            self.dot.game_over()
+            self.pillar_pair.stop()
+            print("GAME OVER")
 
     def on_key_pressed(self, event):
-        if event.char == " ":
-            if not (self.is_started or self.is_gameover):
+        if event.char == ' ':
+            if not self.is_started:
                 self.is_started = True
-                self.pillar_pair.start()
                 self.dot.start()
-            elif not self.is_gameover:
+                self.pillar_pair.start()
+            else:
                 self.dot.jump()
 
 
 class PillarPair(Sprite):
     def init_element(self):
-        self.is_started = True
+        self.is_started = False
+        self.is_gameover = False
 
     def update(self):
         if self.is_started:
@@ -79,10 +87,13 @@ class PillarPair(Sprite):
     def stop(self):
         self.is_started = False
 
+    def game_over(self):
+        self.is_gameover = True
+
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Monkey Banana Game")
+    root.title("Flappy Dot Game")
 
     # do not allow window resizing
     root.resizable(False, False)
