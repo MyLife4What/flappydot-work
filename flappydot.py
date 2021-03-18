@@ -67,7 +67,6 @@ class PillarPair(Sprite):
 
     def init_element(self):
         self.is_started = True
-        self.pillar_update()
 
     def update(self):
         if self.is_started:
