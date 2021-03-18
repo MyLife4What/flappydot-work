@@ -42,20 +42,14 @@ class FlappyGame(GameApp):
     def create_sprites(self):
         self.dot = Dot(self, 'images/dot.png', CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
         self.elements.append(self.dot)
-
-    def create_pillar(self):
         self.pillar_pair = PillarPair(self, 'images/pillar-pair.png', CANVAS_WIDTH, CANVAS_HEIGHT // 2)
         self.pillar_pair.random_pillar_height()
         self.elements.append(self.pillar_pair)
-        self.pillar_pair = PillarPair(self, 'images/pillar-pair.png', CANVAS_WIDTH, CANVAS_HEIGHT // 2)
-        self.elements.append(self.pillar_pair)
-        self.elements.append(self.dot)
 
     def init_game(self):
         self.is_started = False
         self.is_gameover = False
         self.create_sprites()
-        self.create_pillar()
         self.is_started = False
         self.is_gameover = False
 
