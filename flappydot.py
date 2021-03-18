@@ -40,8 +40,17 @@ class FlappyGame(GameApp):
         pass
 
 class PillarPair(Sprite):
+    def init_element(self):
+        self.is_started = True
+
     def update(self):
-        self.x -= PILLAR_SPEED
+        if self.is_started:
+            self.x -= PILLAR_SPEED
+            if self.x <= -100:
+                self.x = CANVAS_WIDTH
+
+    def stop(self):
+        self.is_started = False
 
 if __name__ == "__main__":
     root = tk.Tk()
