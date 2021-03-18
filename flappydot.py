@@ -11,8 +11,6 @@ GRAVITY = 2.5
 STARTING_VELOCITY = -30
 JUMP_VELOCITY = -20
 PILLAR_SPEED = 10
-JUMP_VELOCITY = -20
-
 
 
 class Dot(Sprite):
@@ -51,8 +49,6 @@ class FlappyGame(GameApp):
         self.is_started = False
         self.is_gameover = False
         self.create_sprites()
-        self.is_started = False
-        self.is_gameover = False
 
     def pre_update(self):
         pass
@@ -103,7 +99,6 @@ class PillarPair(Sprite):
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("Flappy Dot Game")
-
     # do not allow window resizing
     root.resizable(False, False)
     app = FlappyGame(root, CANVAS_WIDTH, CANVAS_HEIGHT, UPDATE_DELAY)
